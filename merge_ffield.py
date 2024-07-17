@@ -100,9 +100,15 @@ def read_ffield(file_ffield):
 
 
 def aName(int,pyffield):
-    return pyffield[1][0][int-1]
+    if int==0:
+        return "A"
+    else:
+        return pyffield[1][0][int-1]
 def aNumber(str,pyffield):
-    return pyffield[1][0].index(str)+1
+    if str == "A":
+        return 0
+    else:
+        return pyffield[1][0].index(str)+1
 
 def list_avail(pyffield,atom_type):
     dict_para={"general":0,"atom":1,"bond":2,"off":3,"angle":4,"torsion":5,"hbond":6}
@@ -195,7 +201,7 @@ def list_transfer(pyffield_get,pyffield_set,tr_atom):
     count=0
     for tor in merge_avail[0][4]:
         para = [i for i in tor.split("-") if i != merge_atom]
-        if all(item in atoms_set for item in para):
+        if all(item in atoms_set + ["A"] for item in para):
             filter_para_type[4].append(tor)
             filter_para[4].append(merge_avail[1][4][count])
         count+=1
